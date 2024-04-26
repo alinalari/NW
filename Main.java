@@ -70,7 +70,7 @@ public class Main {
 		} else if (card1.getRank() > card2.getRank()) {
 			player1.addCards(player1.get(), player2.get());
 		} else {
-			player1.addCards(player1.get(), player2.get());
+			player2.addCards(player1.get(), player2.get());
 		}
 
 		System.out.println(player1.getName() + " has " + player1.size() + " cards, " +
