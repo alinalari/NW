@@ -21,12 +21,5 @@ public class Player extends Queue<Card>{
 		    add(card2);
 	}
 	
-	
-
-
 
 }
-
-
-
-
