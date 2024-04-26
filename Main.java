@@ -88,7 +88,7 @@ public class Main {
 			isTie = false;
 
 			if (player1.size() >= 4) {  // Play 3 cards face down and 1 face up 
-				for (int i = 0; i < 3; i++) {
+				for (int i = 0; i < 4; i++) {
 					cardsInPlay.add(player1.get());
 				}
 				cardsInPlay.add(player1.get());
@@ -99,7 +99,7 @@ public class Main {
 			}
 
 			if (player2.size() >= 4) {  // Play 3 cards face down and 1 face up
-				for (int i = 0; i < 3; i++) {
+				for (int i = 0; i < 4; i++) {
 					cardsInPlay.add(player2.get());
 				}
 				cardsInPlay.add(player2.get());
@@ -120,41 +120,35 @@ public class Main {
 			}
 		} while (isTie && cardsInPlay.size() < 52 && player1.size() >= 4 && player2.size() >= 4);
 
-//		  while (!cardsInPlay.isEmpty()) {
-//		        player1.put(cardsInPlay.remove(0));
-//		        player2.put(cardsInPlay.remove(0));
-//		    }
-//	}
-		
-		 // Distribute the cards in play to the winner
+		// Distribute the cards in play to the winner
 		Card player1Card = player1.isEmpty() ? null : player1.peek();
 		Card player2Card = player2.isEmpty() ? null : player2.peek();
 
 		if (player1Card != null && player2Card != null) {
 			if (player1Card.compareTo(player2Card) > 0) {
-                player1.put(player1Card);
-                System.out.println(player1.getName() + " plays " + player1Card + ", " +
-                        player2.getName() + " plays " + player2Card);
-                player1.addAll(cardsInPlay);
-            } else {
-                player2.put(player2Card);
-                System.out.println(player1.getName() + " plays " + player1Card + ", " +
-                        player2.getName() + " plays " + player2Card);
-                player2.addAll(cardsInPlay);
-            }
-        } else if (player1Card != null) {
-            player1.put(player1Card);
-            player1.addAll(cardsInPlay);
-            System.out.println(player1.getName() + " plays " + player1Card + ", " +
-                    player2.getName() + " plays " + player2Card);
+			//	player1.put(player1Card);
+				System.out.println(player1.getName() + " plays " + player1Card + ", " + 
+						player2.getName() + " plays " + player2Card);
+				       player1.addAll(cardsInPlay);
+			} else {
+			//	player2.put(player2Card);
+				System.out.println(player1.getName() + " plays " + player1Card + ", " +
+						player2.getName() + " plays " + player2Card);
+				     player2.addAll(cardsInPlay);
+			}
+		} else if (player1Card != null) {
+			//player1.put(player1Card);
+			  player1.addAll(cardsInPlay);
+			System.out.println(player1.getName() + " plays " + player1Card + ", " +
+					player2.getName() + " plays " + player2Card);
 
 
-        } else {
-            player2.put(player2Card);
-            player2.addAll(cardsInPlay);
-            System.out.println(player1.getName() + " plays " + player1Card + ", " +
-                    player2.getName() + " plays " + player2Card);
-        }
+		} else {
+			//player2.put(player2Card);
+			     player2.addAll(cardsInPlay);
+			System.out.println(player1.getName() + " plays " + player1Card + ", " +
+					player2.getName() + " plays " + player2Card);
+		}
 	}
 
 
