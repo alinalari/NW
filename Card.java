@@ -1,7 +1,6 @@
 
 public class Card implements Comparable<Card> {
 
-
 	// Card.java
 
 	private String mySymbol;
@@ -50,4 +49,3 @@ public class Card implements Comparable<Card> {
 		return mySymbol;
 	}
 }
-
