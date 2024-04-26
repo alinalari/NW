@@ -34,15 +34,6 @@ public class Main {
 		}
 	}
 
-	//	public static void deal(Deck deck, Queue<Player> players) { // Gives each player 26 cards (equally splits deck)
-	//		for (int j = 0; j < players.size(); j++) {
-	//			Player player = players.get(j);
-	//			for (int i = 0; i < 26; i++) {
-	//				player.put(deck.getCard());
-	//			}
-	//		}
-	//	}
-
 	public static void playNotchWar(Player player1, Player player2) { // Keep playing until one player has 0 cards
 
 		while (!player1.isEmpty() && !player2.isEmpty()) {
@@ -64,13 +55,17 @@ public class Main {
 			System.out.println("Notched!");
 			if (card1.getRank() < card2.getRank()) {
 				player1.addCards(player1.get(), player2.get());
+				//player1.put(player2.get());
 			} else {
-				player1.addCards(player1.get(), player2.get());
+				player2.addCards(player1.get(), player2.get());
+				//player2.put(player1.get());
 			}
 		} else if (card1.getRank() > card2.getRank()) {
 			player1.addCards(player1.get(), player2.get());
+			//player1.put(player2.get());
 		} else {
 			player2.addCards(player1.get(), player2.get());
+			//player2.put(player1.get());
 		}
 
 		System.out.println(player1.getName() + " has " + player1.size() + " cards, " +
