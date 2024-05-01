@@ -12,9 +12,7 @@ public class Main {
 		Deck deck = new Deck(); 
 		deck.shuffle();
 
-		Queue[] players = {player1, player2};
-
-		// Deal deck to each player
+		// Deal half of the deck (26 cards) to each player
 		deal(deck, player1); 
 		deal(deck, player2);
 
@@ -37,7 +35,6 @@ public class Main {
 	public static void playNotchWar(Player player1, Player player2) { 
 		while (!player1.isEmpty() && !player2.isEmpty()) {
 			playRound(player1, player2);
-			//playNotchWar(player1, player2);
 			
 		}
 	}
@@ -48,7 +45,7 @@ public class Main {
 
 		System.out.println(player1.getName() + " plays " + card1 + ", " + player2.getName() + " plays " + card2);
 
-		if (card1.compareTo(card2) == 0) { // Cards are the same -> War!
+		if (card1.getRank() == card2.getRank()) { // Cards' rank are the same -> War!
 			war(player1, player2);
 		}
 		else if (Math.abs(card1.getRank() - card2.getRank()) == 1) { // A player has a card one below their opponent -> Notched!
@@ -75,51 +72,29 @@ public class Main {
 		ArrayList<Card> player1Last = new ArrayList<>();
 		ArrayList<Card> player2Last = new ArrayList<>();
 
-		boolean isTie;
-
 		do {
-			isTie = false;
-
-			if (player1.size() >= 5) {  // Play 3 cards face down and 1 face up
-				for (int i = 0; i < 5; i++) {
-					Card card = player1.get();
-					cardsInPlay.add(card);
-					player1Last.add(card);
-				}
-
-			} else {
-				for (int i = 0; i < player1.size(); i++) {
-					Card card = player1.get();
-					cardsInPlay.add(card);
-					player1Last.add(card);
-				}
+			for (int i = 0; i < Math.min(5,player1.size()); i++) {
+				Card card = player1.get();
+				cardsInPlay.add(card);
+				player1Last.add(card);
 			}
 
-			if (player2.size() >= 5) {  // Play 3 cards face down and 1 face up
-				for (int i = 0; i < 5; i++) {
-					Card card = player2.get();
-					cardsInPlay.add(card);
-					player2Last.add(card);
-				}
-
-			} else {
-				for (int i = 0; i < player2.size(); i++) {
-					Card card = player2.get();
-					cardsInPlay.add(card);
-					player2Last.add(card);
-				}
+			
+			for (int i = 0; i < Math.min(5, player2.size()); i++) {
+				Card card = player2.get();
+				cardsInPlay.add(card);
+				player2Last.add(card);
 			}
 
 			if (!player1.isEmpty() && !player2.isEmpty() &&
 					player1.peek().compareTo(player2.peek()) == 0) {  // 4th card placed face up is the same as the opponent -> Another tie!!
-				isTie = true;
 				System.out.println(player1.getName() + " plays " + player1.peek() + ", " +
 						player2.getName() + " plays " + player2.peek());
 				System.out.println("Another tie! WAR!");	
 			} else {
 				break; // Exit the loop if no tie
 			}
-		} while (isTie && cardsInPlay.size() < 52 && player1.size() >= 4 && player2.size() >= 4);
+		} while (cardsInPlay.size() < 52 && player1.size() >= 4 && player2.size() >= 4);
 
 		// Distribute the cards in play to the winner
 		Card player1Card = player1.isEmpty() ? null : player1.peek();
@@ -155,5 +130,4 @@ public class Main {
 			return player1;
 		}
 	}
-
 }
