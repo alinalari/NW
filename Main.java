@@ -2,15 +2,15 @@
 import java.util.ArrayList;
 
 public class Main {
+	
+	static Player player1 = new Player("Player 1");
+	static Player player2 = new Player("Player 2");
 
 	public static void main(String[] args){
 
 		//Shuffles deck
 		Deck deck = new Deck(); 
 		deck.shuffle();
-
-		Player player1 = new Player("Player 1");
-		Player player2 = new Player("Player 2");
 
 		Queue[] players = {player1, player2};
 
@@ -37,6 +37,8 @@ public class Main {
 	public static void playNotchWar(Player player1, Player player2) { 
 		while (!player1.isEmpty() && !player2.isEmpty()) {
 			playRound(player1, player2);
+			//playNotchWar(player1, player2);
+			
 		}
 	}
 
@@ -145,7 +147,6 @@ public class Main {
 					player2.getName() + " plays " + player2Card);
 		}
 	}
-
 
 	public static Player determineWinner(Player player1, Player player2) { // Whichever player has 0 cards first loses
 		if (player1.isEmpty()) {
